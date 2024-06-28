@@ -19,7 +19,6 @@ export default function CommunitiesScreen() {
 
   return (
     <View style={styles.container}>
-      <Text>CommunitiesScreen</Text>
       <Pressable style={({ pressed }) => [pressed ? { opacity: 0.5 } : undefined]} onPress={() => navigation.navigate('CommunityDetail')}>
         <Image source={require('../assets/images/swiftui.jpg')} style={styles.image}  />
         <Text style={styles.cardTitle}>Community Name</Text>

@@ -5,6 +5,7 @@ import {
   Image,
   Pressable,
   ScrollView,
+  Alert,
 } from "react-native";
 import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -31,6 +32,9 @@ export default function CommunityDetailScreen() {
               { marginRight: 10 },
               pressed ? { opacity: 0.5 } : undefined,
             ]}
+            onPress={() => {
+              Alert.alert('hello')
+            }}
           >
             <Ionicons name="trash" size={20} color={"orangered"} />
           </Pressable>

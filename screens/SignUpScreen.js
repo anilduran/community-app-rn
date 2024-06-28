@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import TextField from "../components/TextField";
 import PrimaryButton from "../components/PrimaryButton";
+import ClearButton from "../components/ClearButton";
 
 export default function SignUpScreen() {
   const navigation = useNavigation();
@@ -11,6 +12,26 @@ export default function SignUpScreen() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isPassword, setIsPassword] = useState(true);
+
+  let passwordLeadingIcon = (
+    <Ionicons name="lock-closed-outline" size={20} />
+  );
+
+  if (password) {
+    passwordLeadingIcon = (
+      <Pressable
+        style={({ pressed }) => [pressed ? { opacity: 0.5 } : undefined]}
+        onPress={() => setIsPassword(!isPassword)}
+      >
+        {isPassword ? (
+          <Ionicons name="eye-off-outline" size={20} />
+        ) : (
+          <Ionicons name="eye-outline" size={20} />
+        )}
+      </Pressable>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -20,55 +41,36 @@ export default function SignUpScreen() {
         leadingIcon={<Ionicons name="person-outline" size={20} />}
         trailingIcon={
           username && (
-            <Pressable
-              style={({ pressed }) => [pressed ? { opacity: 0.5 } : undefined]}
-              onPress={() => setUsername("")}
-            >
-              <Ionicons name="close" size={20} />
-            </Pressable>
+            <ClearButton onPress={() => setUsername("")} />
           )
         }
         placeholder="Enter a username"
         value={username}
         onChangeText={(e) => setUsername(e)}
-        autoCapitalize='none'
-        
+        autoCapitalize="none"
       />
 
       <TextField
         leadingIcon={<Ionicons name="mail-outline" size={20} />}
         trailingIcon={
           email && (
-            <Pressable
-              style={({ pressed }) => [pressed ? { opacity: 0.5 } : undefined]}
-              onPress={() => setEmail("")}
-            >
-              <Ionicons name="close" size={20} />
-            </Pressable>
+            <ClearButton onPress={() => setEmail("")} />
           )
         }
         placeholder="Enter an email"
         value={email}
         onChangeText={(e) => setEmail(e)}
-        autoCapitalize='none'
+        autoCapitalize="none"
       />
 
       <TextField
-        leadingIcon={<Ionicons name="lock-closed-outline" size={20} />}
-        trailingIcon={
-          password && (
-            <Pressable
-              style={({ pressed }) => [pressed ? { opacity: 0.5 } : undefined]}
-              onPress={() => setPassword("")}
-            >
-              <Ionicons name="close" size={20} />
-            </Pressable>
-          )
-        }
+        leadingIcon={passwordLeadingIcon}
+        trailingIcon={password && <ClearButton onPress={() => setPassword("")} />}
         placeholder="Enter a password"
         value={password}
         onChangeText={(e) => setPassword(e)}
-        autoCapitalize='none'
+        autoCapitalize="none"
+        secureTextEntry={isPassword}
       />
 
       <PrimaryButton text="Sign Up" onPress={() => console.log("sign up")} />

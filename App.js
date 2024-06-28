@@ -18,6 +18,11 @@ import CreatePostScreen from './screens/CreatePostScreen';
 import PostsScreen from './screens/PostsScreen';
 import CommunityDetailScreen from './screens/CommunityDetailScreen';
 import PostDetailScreen from './screens/PostDetailScreen';
+import CommentsScreen from './screens/CommentsScreen';
+import MessagesScreen from './screens/MessagesScreen';
+import ChangeUsernameScreen from './screens/ChangeUsernameScreen';
+import ChangeEmailScreen from './screens/ChangeEmailScreen';
+import ChangePasswordScreen from './screens/ChangePasswordScreen';
 
 const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
@@ -49,6 +54,11 @@ export default function App() {
         <Stack.Screen name='PostDetail' component={PostDetailScreen} />
         <Stack.Screen name='CreatePost' component={CreatePostScreen} />
         <Stack.Screen name='UpdatePost' component={UpdatePostScreen} />
+        <Stack.Screen name='Comments' component={CommentsScreen} />
+        <Stack.Screen name='Messages' component={MessagesScreen} />
+        <Stack.Screen name='ChangeUsername' component={ChangeUsernameScreen} />
+        <Stack.Screen name='ChangeEmail' component={ChangeEmailScreen} />
+        <Stack.Screen name='ChangePassword' component={ChangePasswordScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
