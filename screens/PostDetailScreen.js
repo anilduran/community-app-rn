@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, Image, Pressable, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Pressable,
+  ScrollView,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -34,25 +41,41 @@ export default function PostDetailScreen() {
   return (
     <View style={{ flex: 1 }}>
       <ScrollView bounces={false}>
-      <Image
-        source={require("../assets/images/swiftui.jpg")}
-        style={styles.image}
-      />
-      <View style={styles.container}>
-      <Text style={styles.title}>Post Title</Text>
-        <Text style={styles.content}>Post contnet</Text>
-        <Text style={styles.commentsTitle}>Comments - 23</Text>
-        <View style={styles.commentCard}>
-          <Image
-            source={require("../assets/images/swiftui.jpg")}
-            style={styles.commentImage}
-          />
-          <View>
-            <Text style={styles.commentTitle}>user 1</Text>
-            <Text style={styles.commentText}>comment text</Text>
+        <Image
+          source={require("../assets/images/swiftui.jpg")}
+          style={styles.image}
+        />
+        <View style={styles.container}>
+          <View style={styles.infoContainer}>
+            <Pressable
+              style={({ pressed }) => [
+                styles.infoButton,
+                pressed ? { opacity: 0.5 } : undefined,
+              ]}
+              onPress={() => navigation.navigate('UserDetail')}
+            >
+              <Image
+                source={require("../assets/images/swiftui.jpg")}
+                style={styles.profilePhoto}
+              />
+              <Text style={styles.usernameText}>Username</Text>
+            </Pressable>
+          </View>
+
+          <Text style={styles.title}>Post Title</Text>
+          <Text style={styles.content}>Post contnet</Text>
+          <Text style={styles.commentsTitle}>Comments - 23</Text>
+          <View style={styles.commentCard}>
+            <Image
+              source={require("../assets/images/swiftui.jpg")}
+              style={styles.commentImage}
+            />
+            <View>
+              <Text style={styles.commentTitle}>user 1</Text>
+              <Text style={styles.commentText}>comment text</Text>
+            </View>
           </View>
         </View>
-      </View>
       </ScrollView>
       <View
         style={{
@@ -62,7 +85,7 @@ export default function PostDetailScreen() {
           paddingTop: 16,
           paddingBottom: 48,
           columnGap: 10,
-          backgroundColor: 'white',
+          backgroundColor: "white",
           borderTopLeftRadius: 16,
           borderTopRightRadius: 16,
         }}
@@ -100,6 +123,25 @@ const styles = StyleSheet.create({
     height: 250,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
+  },
+  infoContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    columnGap: 10,
+  },
+  infoButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    columnGap: 10,
+  },
+  profilePhoto: {
+    width: 40,
+    height: 40,
+    borderRadius: 99,
+  },
+  usernameText: {
+    fontWeight: "bold",
+    fontSize: 14,
   },
   title: {
     fontWeight: "bold",

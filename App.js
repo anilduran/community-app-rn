@@ -23,6 +23,7 @@ import MessagesScreen from './screens/MessagesScreen';
 import ChangeUsernameScreen from './screens/ChangeUsernameScreen';
 import ChangeEmailScreen from './screens/ChangeEmailScreen';
 import ChangePasswordScreen from './screens/ChangePasswordScreen';
+import UserDetailScreen from './screens/UserDetailScreen';
 
 const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
@@ -59,6 +60,7 @@ export default function App() {
         <Stack.Screen name='ChangeUsername' component={ChangeUsernameScreen} />
         <Stack.Screen name='ChangeEmail' component={ChangeEmailScreen} />
         <Stack.Screen name='ChangePassword' component={ChangePasswordScreen} />
+        <Stack.Screen name='UserDetail' component={UserDetailScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

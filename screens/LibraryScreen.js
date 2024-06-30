@@ -1,4 +1,4 @@
-import { View, Text, Pressable, StyleSheet } from "react-native";
+import { View, Text, Pressable, StyleSheet, ScrollView } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -7,34 +7,35 @@ export default function LibraryScreen() {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
+    <ScrollView>
+      <View style={styles.container}>
+        <ListItem
+          leadingIcon={<Ionicons name="people-outline" size={20} />}
+          text="Your communities"
+          onPress={() => navigation.navigate("Communities")}
+        />
 
-      <ListItem
-        leadingIcon={<Ionicons name="people-outline" size={20} />}
-        text="Your communities"
-        onPress={() => navigation.navigate("Communities")}
-      />
+        <ListItem
+          leadingIcon={<Ionicons name="book-outline" size={20} />}
+          text="Your posts"
+          onPress={() => navigation.navigate("Posts")}
+        />
 
-      <ListItem
-        leadingIcon={<Ionicons name="book-outline" size={20} />}
-        text="Your posts"
-        onPress={() => navigation.navigate('Posts')} 
-      />
+        <ListItem
+          leadingIcon={
+            <Ionicons name="chatbubble-ellipses-outline" size={20} />
+          }
+          text="Your comments"
+          onPress={() => navigation.navigate("Comments")}
+        />
 
-      <ListItem
-        leadingIcon={<Ionicons name='chatbubble-ellipses-outline' size={20} />}
-        text='Your comments'
-        onPress={() => navigation.navigate('Comments')}
-      />
-
-      <ListItem
-        leadingIcon={<Ionicons name='chatbubbles-outline' size={20} />}
-        text='Your messages'
-        onPress={() => navigation.navigate('Messages')}
-      />
-
-
-    </View>
+        <ListItem
+          leadingIcon={<Ionicons name="chatbubbles-outline" size={20} />}
+          text="Your messages"
+          onPress={() => navigation.navigate("Messages")}
+        />
+      </View>
+    </ScrollView>
   );
 }
 

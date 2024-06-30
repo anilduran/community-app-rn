@@ -33,7 +33,24 @@ export default function CommunityDetailScreen() {
               pressed ? { opacity: 0.5 } : undefined,
             ]}
             onPress={() => {
-              Alert.alert('hello')
+              Alert.alert('Are you sure?', 'Are you sure you want to delete this community?', [
+                {
+                  text: 'Yes',
+                  style: 'destructive',
+                  onPress: () => {
+                    console.log('yes')
+                  }
+                },
+                {
+                  text: 'No',
+                  style: 'cancel',
+                  onPress: () => {
+                    console.log('no')
+                  } 
+                }
+              ], {
+                cancelable: true
+              })
             }}
           >
             <Ionicons name="trash" size={20} color={"orangered"} />
