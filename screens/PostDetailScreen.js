@@ -9,10 +9,10 @@ import {
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import CommentCard from "../components/CommentCard";
+import PrimaryButton from "../components/PrimaryButton";
 
 export default function PostDetailScreen() {
-  const [isLiked, setIsLiked] = useState(false);
-
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function PostDetailScreen() {
     <View style={{ flex: 1 }}>
       <ScrollView bounces={false}>
         <Image
-          source={require("../assets/images/swiftui.jpg")}
+          source={require("../assets/images/react_native.png")}
           style={styles.image}
         />
         <View style={styles.container}>
@@ -52,10 +52,10 @@ export default function PostDetailScreen() {
                 styles.infoButton,
                 pressed ? { opacity: 0.5 } : undefined,
               ]}
-              onPress={() => navigation.navigate('UserDetail')}
+              onPress={() => navigation.navigate("UserDetail")}
             >
               <Image
-                source={require("../assets/images/swiftui.jpg")}
+                source={require("../assets/images/react_native.png")}
                 style={styles.profilePhoto}
               />
               <Text style={styles.usernameText}>Username</Text>
@@ -65,50 +65,10 @@ export default function PostDetailScreen() {
           <Text style={styles.title}>Post Title</Text>
           <Text style={styles.content}>Post contnet</Text>
           <Text style={styles.commentsTitle}>Comments - 23</Text>
-          <View style={styles.commentCard}>
-            <Image
-              source={require("../assets/images/swiftui.jpg")}
-              style={styles.commentImage}
-            />
-            <View>
-              <Text style={styles.commentTitle}>user 1</Text>
-              <Text style={styles.commentText}>comment text</Text>
-            </View>
-          </View>
+          <CommentCard />
         </View>
       </ScrollView>
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          paddingHorizontal: 16,
-          paddingTop: 16,
-          paddingBottom: 48,
-          columnGap: 10,
-          backgroundColor: "white",
-          borderTopLeftRadius: 16,
-          borderTopRightRadius: 16,
-        }}
-      >
-        <Pressable
-          style={({ pressed }) => [
-            styles.button,
-            pressed ? { opacity: 0.5 } : undefined,
-          ]}
-        >
-          <Text style={styles.buttonText}>Leave a comment</Text>
-        </Pressable>
-        <Pressable
-          style={({ pressed }) => [pressed ? { opacity: 0.5 } : undefined]}
-          onPress={() => setIsLiked(!isLiked)}
-        >
-          <Ionicons
-            name={isLiked ? "heart" : "heart-outline"}
-            size={36}
-            color="orangered"
-          />
-        </Pressable>
-      </View>
+      <ActionsSection />
     </View>
   );
 }
@@ -157,30 +117,34 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 20,
   },
-  commentCard: {
+  actionsContainer: {
     flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 16,
+    paddingTop: 16,
+    paddingBottom: 48,
     columnGap: 10,
-    marginTop: 10,
-  },
-  commentImage: {
-    width: 40,
-    height: 40,
-    borderRadius: 99,
-  },
-  commentTitle: {
-    fontWeight: "bold",
-  },
-  commentText: {
-    color: "gray",
-  },
-  button: {
-    backgroundColor: "black",
-    padding: 16,
-    borderRadius: 6,
-    flex: 1,
-  },
-  buttonText: {
-    color: "white",
-    textAlign: "center",
+    backgroundColor: "white",
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
   },
 });
+
+function ActionsSection() {
+  const [isLiked, setIsLiked] = useState(false);
+  return (
+    <View style={styles.actionsContainer}>
+      <PrimaryButton text="Leave a comment" style={{ flex: 1 }} />
+      <Pressable
+        style={({ pressed }) => [pressed ? { opacity: 0.5 } : undefined]}
+        onPress={() => setIsLiked(!isLiked)}
+      >
+        <Ionicons
+          name={isLiked ? "heart" : "heart-outline"}
+          size={36}
+          color="orangered"
+        />
+      </Pressable>
+    </View>
+  );
+}

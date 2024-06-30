@@ -1,10 +1,10 @@
-import { View, Text, StyleSheet, FlatList, TextInput } from "react-native";
+import { View, Text, StyleSheet, FlatList, TextInput, Pressable } from "react-native";
 import React, { useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import ClearButton from "../components/ClearButton";
 
 export default function SearchScreen() {
-  const categories = ["HTML", "CSS", "JavaScript"];
+  const categories = ["HTML", "CSS", "JavaScript", "Rust", "NodeJS", "Kotlin", "PHP", "Python"];
 
   const [searchText, setSearchText] = useState("");
 
@@ -26,14 +26,12 @@ export default function SearchScreen() {
         data={categories}
         keyExtractor={(item) => item}
         renderItem={({ item }) => (
-          <View style={styles.categoryContainer}>
-            <Text style={{ textAlign: "center" }}>{item}</Text>
-          </View>
+          <Pressable style={({ pressed }) => [styles.categoryContainer, pressed ? { opacity: 0.5 } : undefined]}>
+            <Text style={styles.categoryText}>{item}</Text>
+          </Pressable>
         )}
         numColumns={2}
       />
-
-      <View></View>
     </View>
   );
 }
@@ -41,16 +39,22 @@ export default function SearchScreen() {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
+    rowGap: 10
   },
   categoryContainer: {
     // width: 100,
     flex: 1,
-    height: 200,
+    height: 150,
     justifyContent: "center",
-    backgroundColor: "white",
+    backgroundColor: "orangered",
     borderRadius: 6,
-    margin: 16,
+    margin: 10,
   },
+  categoryText: {
+    color: 'white',
+    textAlign: 'center',
+    fontWeight: 'bold'
+  },  
   inputContainer: {
     borderWidth: 1.5,
     borderColor: "black",

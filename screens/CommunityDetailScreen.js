@@ -72,7 +72,7 @@ export default function CommunityDetailScreen() {
   return (
     <View style={styles.container}>
       <Image
-        source={require("../assets/images/swiftui.jpg")}
+        source={require("../assets/images/react_native.png")}
         style={styles.image}
       />
       <Text style={styles.title}>Community Name</Text>
@@ -87,7 +87,7 @@ export default function CommunityDetailScreen() {
       >
         <View></View>
         <Image
-          source={require("../assets/images/swiftui.jpg")}
+          source={require("../assets/images/react_native.png")}
           style={styles.cardImage}
         />
         <Text style={styles.cardTitle}>Post Title</Text>

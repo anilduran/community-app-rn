@@ -34,6 +34,12 @@ export default function LibraryScreen() {
           text="Your messages"
           onPress={() => navigation.navigate("Messages")}
         />
+
+        <ListItem
+          leadingIcon={<Ionicons name='heart-outline' size={20} />}
+          text='Liked posts'
+          onPress={() => navigation.navigate('LikedPosts')}
+        />
       </View>
     </ScrollView>
   );
